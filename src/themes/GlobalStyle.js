@@ -34,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
   }
   img {
     display: block;
-    width: 100%;
+    width: 150px;
   }
   button,
   input, 

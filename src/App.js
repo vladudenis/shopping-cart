@@ -5,9 +5,9 @@ import ShopItem from "./components/ShopItem";
 import Nav from "./components/Nav";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
-import styled from 'styled-components';
 
 const App = () => {
+
   return(
     <BrowserRouter>
       <div>
@@ -15,7 +15,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/shop" component={Shop} />
-          <Route exact path="/shop/:id" component={ShopItem} />
+          <Route exact path="/shop/:item" render={(props) => <ShopItem src={props.location.state.src} name={props.location.state.name} itemDetail={true} />} />
           <Route exact path="/cart" component={Cart} />
         </Switch>
       </div>

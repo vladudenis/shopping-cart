@@ -8,7 +8,7 @@ const Nav = () => {
   return(
       <NavWrapper>
           <Link to="/">
-            <h3>Shop Name Placeholder</h3>
+            <h3>Crypto Kiosk</h3>
           </Link>
           <ListWrapper>
               <Link to="/shop">
