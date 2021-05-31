@@ -1,59 +1,39 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const ShopItem = ({ src, name, itemDetail }) => {
-  if(itemDetail){
-    return(
-      <CardWrapper>
+const ShopItem = ({ src, name, shorthand, price=0 }) => {
+  return(
+      <Link to={{
+        pathname: `/shop/${shorthand}`,
+        state: {
+          src: src,
+          name: name,
+          shorthand: shorthand
+        }
+      }}>
         <Card>
           <img src={src} alt={name + " Logo"}></img>
           <div>
-            <h5>{name}</h5>
-            <p>Price: $--</p>
+            <h4>{name}</h4>
+            <p>Price: {price}</p>
           </div>
         </Card>
-
-        <Description>
-          <h5>{name}</h5>
-          <p>Description</p>
-        </Description>
-      </CardWrapper>
+      </Link>
     );
-  }else{
-    return(
-      <Card>
-        <img src={src} alt={name + " Logo"}></img>
-        <div>
-          <h5>{name}</h5>
-          <p>Price: $--</p>
-        </div>
-      </Card>
-    );
-  }
 };
 
 const Card = styled.div`
-display: grid;
-grid-template-columns: 1fr;
-grid-template-rows: 1fr 1fr;
-grid-gap: 10px;
-padding: 0px 10px;
-margin: 0px 10px;
-max-height: 230px;
-& div{
-   text-align: center;
-}
-`;
-
-const Description = styled.div`
-  background-color: beige;
-`;
-
-const CardWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
   justify-items: center;
+  margin: 0 10px;
+  grid-gap: 10px;
+  max-height: 250px;
+  & div{
+    text-align: center;
+  }
 `;
 
 export default ShopItem;

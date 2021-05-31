@@ -1,72 +1,43 @@
+import ada from "../assets/ada.svg";
+import btc from "../assets/btc.svg";
+import doge from "../assets/doge.svg";
+import eth from "../assets/eth.svg";
+import ltc from "../assets/ltc.svg";
+import xrp from "../assets/xrp.svg";
+import eos from "../assets/eos.svg";
+import neo from "../assets/neo.svg";
+import tron from "../assets/tron.svg";
+import usdc from "../assets/usdc.svg";
+import usdt from "../assets/usdt.svg";
 import React from "react";
-import Ada from "../assets/ada.svg";
-import Btc from "../assets/btc.svg";
-import Doge from "../assets/doge.svg";
-import Eth from "../assets/eth.svg";
-import Ltc from "../assets/ltc.svg";
-import Xrp from "../assets/xrp.svg";
-import Eos from "../assets/eos.svg";
-import Neo from "../assets/neo.svg";
-import Tron from "../assets/tron.svg";
-import Usdc from "../assets/usdc.svg";
-import Usdt from "../assets/usdt.svg";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import ShopItem from "./ShopItem";
 
 const Shop = () => {
   return(
     <ShopWrapper>
       <ShopItemWrapper>
-        <Link to={{
-                pathname: "/shop/ada",
-                state: {
-                  src: Ada,
-                  name: "Cardano"
-                }
-        }}>
-          <ShopItem src={Ada} name={"Cardano"} itemDetail={false} />
-        </Link>
+        <ShopItem src={ada} name={"Cardano"} shorthand={"ADA"} />
 
-        <Link to="/shop/btc">
-          <ShopItem src={Btc} name={"Bitcoin"} />
-        </Link>
+        <ShopItem src={btc} name={"Bitcoin"} shorthand={"BTC"}  />
 
-        <Link to="/shop/doge">
-          <ShopItem src={Doge} name={"Doge"} />
-        </Link>
+        <ShopItem src={doge} name={"Doge"} shorthand={"DOGE"}  />
 
-        <Link to="/shop/eth">
-          <ShopItem src={Eth} name={"Ethereum"} />
-        </Link>
+        <ShopItem src={eth} name={"Ethereum"} shorthand={"ETH"}  />
 
-        <Link to="/shop/ltc">
-          <ShopItem src={Ltc} name={"Litecoin"} />
-        </Link>
+        <ShopItem src={ltc} name={"Litecoin"} shorthand={"LTC"}  />
 
-        <Link to="/shop/xrp">
-          <ShopItem src={Xrp} name={"Ripple"} />
-        </Link>
+        <ShopItem src={xrp} name={"Ripple"} shorthand={"XRP"}  />
 
-        <Link to="/shop/eos">
-          <ShopItem src={Eos} name={"EOS"} />
-        </Link>
+        <ShopItem src={eos} name={"EOS"} shorthand={"EOS"}  />
 
-        <Link to="/shop/neo">
-          <ShopItem src={Neo} name={"NEO"} />
-        </Link>
+        <ShopItem src={neo} name={"NEO"} shorthand={"NEO"}  />
 
-        <Link to="/shop/tron">
-          <ShopItem src={Tron} name={"Tron"} />
-        </Link>
+        <ShopItem src={tron} name={"Tron"} shorthand={"TRON"}  />
 
-        <Link to="/shop/usdc">
-          <ShopItem src={Usdc} name={"USDC"} />
-        </Link>
+        <ShopItem src={usdc} name={"USDC"} shorthand={"USDC"}  />
 
-        <Link to="/shop/usdt">
-          <ShopItem src={Usdt} name={"Tether"} />
-        </Link>
+        <ShopItem src={usdt} name={"Tether"} shorthand={"USDT"}  />
       </ShopItemWrapper>
     </ShopWrapper>
   );
@@ -87,6 +58,7 @@ const ShopItemWrapper = styled.div`
   padding-top: 3rem;
   background-color: white;
   border-radius: 10px;
+  max-width: 80%;
 `;
 
 export default Shop;
