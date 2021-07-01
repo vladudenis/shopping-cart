@@ -1,37 +1,60 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ShopItem from "./ShopItem";
 
-const ShopItemView = ({item, addToCart, changeQuantity}) => {
+const ShopItemView = ({item, addToCart}) => {
+  const [thisItem, setThisItem] = useState(item);
   const inputElement = useRef(null);
 
   const thisAddToCart = () => {
-    addToCart(item);
+    addToCart(thisItem);
   }
 
   const decrementQuantity = () => {
-    if(item.qty > 1){
+    if(inputElement.current.value > 1){
       inputElement.current.value--;
+      setThisItem({
+        ...thisItem, 
+        qty: inputElement.current.value,
+        price: inputElement.current.value * item.price});
     }
-    changeQuantity(item, inputElement.current.value);
   }
 
   const incrementQuantity = () => {
     inputElement.current.value++;
-    changeQuantity(item, inputElement.current.value);
+    setThisItem({
+      ...thisItem, 
+      qty: inputElement.current.value,
+      price: inputElement.current.value * item.price});
+  }
+
+  const newQuantity = () => {
+    if(inputElement.current.value >= 0){
+      setThisItem({
+        ...thisItem, 
+        qty: inputElement.current.value,
+        price: inputElement.current.value * item.price});
+    }
   }
 
   return(
       <ShopItemViewWrapper>
         <ShopItemWrapper>
           <ItemWrapper>
-            <ShopItem src={item.src} name={item.name} shorthand={item.shorthand} />
+            <ShopItem 
+              name={thisItem.name} 
+              shorthand={thisItem.shorthand}
+              src={thisItem.src}
+              price={thisItem.price}
+              qty={thisItem.qty}
+            />
 
             <span>
                 <SmallButton onClick={decrementQuantity}>-</SmallButton>
                 <Input 
                   defaultValue={item.qty}
+                  onChange={newQuantity}
                   ref={inputElement}
                 />
                 <SmallButton onClick={incrementQuantity}>+</SmallButton>

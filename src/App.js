@@ -10,8 +10,15 @@ import { coins } from "./data/Coins";
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = (cartItem) => {
-    setCartItems([...cartItems, cartItem]);
+  const addToCart = (newCartItem) => {
+    const alreadyInCart = cartItems
+      .map((cartItem) => cartItem.shorthand)
+      .includes(newCartItem.shorthand);
+    if(alreadyInCart){
+      changeQuantity(newCartItem, newCartItem.qty);
+    }else{
+      setCartItems([...cartItems, newCartItem]);
+    }
   }
 
   const removeFromCart = (cartItem) => {
@@ -42,7 +49,6 @@ const App = () => {
               <ShopItemView 
                 item={findCoin(props.location.state.shorthand)}  
                 addToCart={addToCart}
-                changeQuantity={changeQuantity}
               />
           }               
         />

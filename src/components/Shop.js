@@ -9,7 +9,13 @@ const Shop = ({ coins }) => {
         {
           coins.map((coin) => {
             return(
-              <ShopItem name={coin.name} shorthand={coin.shorthand} src={coin.src} />
+              <ShopItem 
+                name={coin.name} 
+                shorthand={coin.shorthand}
+                src={coin.src}
+                price={coin.price}
+                qty={coin.qty} 
+              />
             )
           })
         }

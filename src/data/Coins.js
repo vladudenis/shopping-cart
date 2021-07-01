@@ -15,6 +15,7 @@ export const coins = [
         name: "Cardano",
         shorthand: "ADA",
         src: ada,
+        price: 1,
         qty: 1
     },
 
@@ -22,6 +23,7 @@ export const coins = [
         name: "Bitcoin",
         shorthand: "BTC",
         src: btc,
+        price: 1,
         qty: 1
     },
 
@@ -29,6 +31,7 @@ export const coins = [
         name: "Dogecoin",
         shorthand: "DOGE",
         src: doge,
+        price: 1,
         qty: 1
     },
 
@@ -36,6 +39,7 @@ export const coins = [
         name: "Ethereum",
         shorthand: "ETH",
         src: eth,
+        price: 1,
         qty: 1
     },
 
@@ -43,6 +47,7 @@ export const coins = [
         name: "Litecoin",
         shorthand: "LTC",
         src: ltc,
+        price: 1,
         qty: 1
     },
 
@@ -50,6 +55,7 @@ export const coins = [
         name: "Ripple",
         shorthand: "XRP",
         src: xrp,
+        price: 1,
         qty: 1
     },
 
@@ -57,6 +63,7 @@ export const coins = [
         name: "EOS",
         shorthand: "EOS",
         src: eos,
+        price: 1,
         qty: 1
     },
 
@@ -64,6 +71,7 @@ export const coins = [
         name: "NEO",
         shorthand: "NEO",
         src: neo,
+        price: 1,
         qty: 1
     },
 
@@ -71,6 +79,7 @@ export const coins = [
         name: "Tron",
         shorthand: "TRON",
         src: tron,
+        price: 1,
         qty: 1
     },
 
@@ -78,6 +87,7 @@ export const coins = [
         name: "USD Coin",
         shorthand: "USDC",
         src: usdc,
+        price: 1,
         qty: 1
     },
 
@@ -85,6 +95,7 @@ export const coins = [
         name: "Tether",
         shorthand: "USDT",
         src: usdt,
+        price: 1,
         qty: 1
     }
 ];
