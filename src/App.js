@@ -1,36 +1,59 @@
-import React, { useState }  from "react";
+import React, {useState} from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Shop from "./components/Shop";
 import ShopItemView from "./components/ShopItemView";
 import Nav from "./components/Nav";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
+import { coins } from "./data/Coins";
 
 const App = () => {
-  const [cartItems, setCartItems] = useState(0);
-  const addToCart = () => {
-    setCartItems(cartItems + 1);
-  };
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (cartItem) => {
+    setCartItems([...cartItems, cartItem]);
+  }
+
+  const removeFromCart = (cartItem) => {
+    setCartItems(cartItems.filter((item) => item.shorthand !== cartItem.shorthand));
+  }
+
+  const changeQuantity = (thisItem, newValue) => {
+    setCartItems(
+      cartItems.map(
+        (item) => (item.shorthand === thisItem.shorthand ? {...item, qty: newValue} : item)
+      )
+    )
+  }
+
+  const findCoin = (shorthand) => coins.find((coin) => coin.shorthand === shorthand);
 
   return(
     <BrowserRouter>
-      <div>
-        <Nav cartItems={cartItems} />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/shop" component={Shop} />
-          <Route exact path="/shop/:item" 
-                render={
-                  (props) => <ShopItemView 
-                  src={props.location.state.src} 
-                  name={props.location.state.name} 
-                  shorthand={props.location.state.shorthand} 
-                  addToCart={addToCart}/>
-                }               
+      <Nav cartItems={cartItems.length} />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/shop">
+          <Shop coins={coins} />
+        </Route>
+        <Route exact path="/shop/:item" 
+          render={
+            (props) => 
+              <ShopItemView 
+                item={findCoin(props.location.state.shorthand)}  
+                addToCart={addToCart}
+                changeQuantity={changeQuantity}
+              />
+          }               
+        />
+        <Route exact path="/cart">
+          <Cart 
+            cartItems={cartItems}
+            removeFromCart={removeFromCart}
+            changeQuantity={changeQuantity}
           />
-          <Route exact path="/cart" component={Cart} />
-        </Switch>
-      </div>
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 };

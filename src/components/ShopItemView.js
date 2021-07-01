@@ -1,44 +1,53 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ShopItem from "./ShopItem";
 
-const ShopItemView = ({src, name, shorthand, addToCart}) => {
+const ShopItemView = ({item, addToCart, changeQuantity}) => {
   const inputElement = useRef(null);
 
+  const thisAddToCart = () => {
+    addToCart(item);
+  }
+
   const decrementQuantity = () => {
-    if(inputElement.current.value != 0){
+    if(item.qty > 1){
       inputElement.current.value--;
     }
-  };
+    changeQuantity(item, inputElement.current.value);
+  }
 
   const incrementQuantity = () => {
     inputElement.current.value++;
-  };
+    changeQuantity(item, inputElement.current.value);
+  }
 
   return(
       <ShopItemViewWrapper>
         <ShopItemWrapper>
-          <Item>
-            <ShopItem src={src} name={name} shorthand={shorthand} />
+          <ItemWrapper>
+            <ShopItem src={item.src} name={item.name} shorthand={item.shorthand} />
 
             <span>
                 <SmallButton onClick={decrementQuantity}>-</SmallButton>
                 <Input 
-                  defaultValue="1" 
+                  defaultValue={item.qty}
                   ref={inputElement}
                 />
                 <SmallButton onClick={incrementQuantity}>+</SmallButton>
             </span>
 
-            <LargeButton onClick={addToCart}>Add to cart</LargeButton>
-          </Item>
+            <LargeButton onClick={thisAddToCart}>Add to cart</LargeButton>
+          </ItemWrapper>
 
           <Description>
-            <h3>About {name}</h3>
+            <h3>About {item.name}</h3>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore et odio porro numquam laboriosam consectetur optio. Magni est quam vero error harum commodi quos doloremque possimus. Accusantium laboriosam sed vero.</p>
           </Description>
 
-          <LargeButton>Go back</LargeButton>
+          <Link to="/shop">
+            <LargeButton>Go back</LargeButton>
+          </Link>
         </ShopItemWrapper>
       </ShopItemViewWrapper>
   );
@@ -63,7 +72,7 @@ const ShopItemWrapper = styled.div`
   width: 80%;
 `;
 
-const Item = styled.div`
+const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

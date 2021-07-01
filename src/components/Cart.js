@@ -1,10 +1,8 @@
 import React from "react";
 
-const Cart = () => {
+const Cart = ({ cartItems }) => {
   return(
-    <div>
-      <h1>Cart</h1>
-    </div>
+    <div>Cart</div>
   );
 };
 
