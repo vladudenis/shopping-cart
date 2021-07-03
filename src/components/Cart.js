@@ -7,9 +7,14 @@ const Cart = ({ cartItems, removeFromCart, changeQuantity }) => {
   cartItems.forEach((item) => {
     total += item.qty * item.price;
   });
+
   if(cartItems.length === 0){
     return(
-      <div>test</div>
+      <Background>
+        <CartItemWrapper>
+          <h1>Your Cart Is Empty!</h1>
+        </CartItemWrapper>
+      </Background>
     );
   }else if(cartItems.length > 0){
     return(
