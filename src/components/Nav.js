@@ -6,7 +6,7 @@ import { FiSearch } from "react-icons/fi";
 const Nav = ({cartItems = 0}) => {
     return(
         <NavWrapper>
-            <Link to="/">
+            <Link to="/shopping-cart">
                 <h3>Crypto Kiosk</h3>
             </Link>
             <ListWrapper>
