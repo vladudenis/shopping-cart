@@ -39,7 +39,7 @@ const App = () => {
     <BrowserRouter>
       <Nav cartItems={cartItems.length} />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/shopping-cart" component={Home} />
         <Route exact path="/shop">
           <Shop coins={coins} />
         </Route>
