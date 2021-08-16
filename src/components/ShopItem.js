@@ -26,14 +26,19 @@ const ShopItem = ({ name, shorthand, src, price, qty }) => {
 };
 
 const Item = styled.div`
+  width: 350px;
+  height: 300px;
+  background-color: white;
+  border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(2, 1fr);
   justify-items: center;
-  margin: 0 10px;
-  margin-bottom: -40px;
-  grid-gap: 10px;
-  max-height: 250px;
+  margin: 10px 10px;
+  grid-gap: 50px;
+  & img{
+    margin-top: 30px;
+  }
   & div{
     text-align: center;
   }

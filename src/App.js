@@ -39,11 +39,11 @@ const App = () => {
     <BrowserRouter>
       <Nav cartItems={cartItems.length} />
       <Switch>
-        <Route exact path="/shopping-cart" component={Home} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/shop">
           <Shop coins={coins} />
         </Route>
-        <Route exact path="/shop/:item" 
+        <Route exact path="/shop/:id" 
           render={
             (props) => 
               <ShopItemView 
