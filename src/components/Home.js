@@ -37,7 +37,7 @@ const Home = () => {
             You can make your purchases with credit card, Amazon Pay, Apple Pay or PayPal and immediately start trading -- or, if you prefer, HODLing.
           </Paragraph></span>
           <span><Paragraph>Don't miss out on the most exciting revolution of this century!</Paragraph></span>
-          <Link to="/contact">
+          <Link to="/about">
             <LargeButton>LEARN MORE</LargeButton>
           </Link>
         </TeaserMessage>

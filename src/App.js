@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Shop from "./components/Shop";
-import ShopItemView from "./components/ShopItemView";
 import Nav from "./components/Nav";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
 import { coins } from "./data/Coins";
 
 const App = () => {
@@ -43,15 +44,8 @@ const App = () => {
         <Route exact path="/shop">
           <Shop coins={coins} />
         </Route>
-        <Route exact path="/shop/:id" 
-          render={
-            (props) => 
-              <ShopItemView 
-                item={findCoin(props.location.state.shorthand)}  
-                addToCart={addToCart}
-              />
-          }               
-        />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/contact" component={Contact} />
         <Route exact path="/cart">
           <Cart 
             cartItems={cartItems}

@@ -1,46 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ShopItem from "./ShopItem";
 import { FiSearch } from "react-icons/fi";
 
 const Shop = ({ coins }) => {
-  return(
-    <Background>
-      <ShopWrapper>
-        <ShopHeader>
-          <SearchBarWrapper>
-            <SearchBar placeholder="Looking for something specific?" />
-            <SearchButton>
-              <FiSearch />
-            </SearchButton>
-          </SearchBarWrapper>
-          <TextWrapper>
-            <BigText>Placeholder</BigText>
-          </TextWrapper>
-        </ShopHeader>
-        <ShopItems>
-          {
-            coins.map((coin) => {
-              return(
-                <ShopItem 
-                  name={coin.name} 
-                  shorthand={coin.shorthand}
-                  src={coin.src}
-                  price={coin.price}
-                  qty={coin.qty} 
-                />
-              )
-            })
-          }
-        </ShopItems>
-        <ShopFooter>
-          <TextWrapper>
-            <SmallText>Placeholder</SmallText>
-          </TextWrapper>
-        </ShopFooter>
-      </ShopWrapper>
-    </Background>
-  );
+  const [searchFor, setSearchFor] = useState(false);
+  
+  const searchForItem = (e) => {
+    e.preventDefault();
+    if(e.target.value === ""){
+      setSearchFor(false);
+    }else{
+      setSearchFor(e.target.value);
+    }
+  }
+
+  const hasSimilarity = (item1, item2) => {
+    item1 = item1.toUpperCase();
+    item2 = item2.toUpperCase();
+    if(item1 === item2.substring(0, item1.length)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  if(searchFor === false){
+    return(
+      <Background>
+        <ShopWrapper>
+          <ShopHeader>
+            <SearchBarWrapper>
+              <SearchBar placeholder="Looking for something specific?" onChange={searchForItem} />
+              <SearchButton>
+                <FiSearch />
+              </SearchButton>
+            </SearchBarWrapper>
+          </ShopHeader>
+          <ShopItems>
+            {
+              coins.map((coin) => {
+                return(
+                  <ShopItem 
+                    name={coin.name} 
+                    shorthand={coin.shorthand}
+                    src={coin.src}
+                    price={coin.price}
+                    qty={coin.qty} 
+                  />
+                )
+              })
+            }
+          </ShopItems>
+          <ShopFooter>
+            <TextWrapper>
+              <SmallText>Copyright © 2021 Crypto Kiosk GmbH, Austria</SmallText>
+            </TextWrapper>
+          </ShopFooter>
+        </ShopWrapper>
+      </Background>
+    );
+  }else{
+    return(
+      <Background>
+        <ShopWrapper>
+          <ShopHeader>
+            <SearchBarWrapper>
+              <SearchBar placeholder="Looking for something specific?" onChange={searchForItem} />
+              <SearchButton>
+                <FiSearch />
+              </SearchButton>
+            </SearchBarWrapper>
+          </ShopHeader>
+          <ShopItems>
+            {
+              coins.map((coin) => {
+                if(hasSimilarity(searchFor, coin.name)){
+                  return(
+                    <ShopItem 
+                      name={coin.name} 
+                      shorthand={coin.shorthand}
+                      src={coin.src}
+                      price={coin.price}
+                      qty={coin.qty} 
+                    />
+                  )
+                }
+              })
+            }
+          </ShopItems>
+          <ShopFooter>
+            <TextWrapper>
+              <SmallText>Copyright © 2021 Crypto Kiosk GmbH, Austria</SmallText>
+            </TextWrapper>
+          </ShopFooter>
+        </ShopWrapper>
+      </Background>
+    );
+  }
 };
 
 const Background = styled.div`
