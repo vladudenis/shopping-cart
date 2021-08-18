@@ -9,14 +9,23 @@ import Contact from "./components/Contact";
 import { coins } from "./data/Coins";
 
 const App = () => {
+  const [shopCoins, setShopCoins] = useState(coins);
   const [cartItems, setCartItems] = useState([]);
+
+  const changeQuantityShop = (thisItem, newValue) => {
+    setShopCoins(
+      shopCoins.map(
+        (coin) => (coin.shorthand === thisItem.shorthand ? {...coin, qty: newValue} : coin)
+      )
+    )
+  }
 
   const addToCart = (newCartItem) => {
     const alreadyInCart = cartItems
       .map((cartItem) => cartItem.shorthand)
       .includes(newCartItem.shorthand);
     if(alreadyInCart){
-      changeQuantity(newCartItem, newCartItem.qty);
+      changeQuantityCart(newCartItem, newCartItem.qty);
     }else{
       setCartItems([...cartItems, newCartItem]);
     }
@@ -26,7 +35,7 @@ const App = () => {
     setCartItems(cartItems.filter((item) => item.shorthand !== cartItem.shorthand));
   }
 
-  const changeQuantity = (thisItem, newValue) => {
+  const changeQuantityCart = (thisItem, newValue) => {
     setCartItems(
       cartItems.map(
         (item) => (item.shorthand === thisItem.shorthand ? {...item, qty: newValue} : item)
@@ -34,7 +43,7 @@ const App = () => {
     )
   }
 
-  const findCoin = (shorthand) => coins.find((coin) => coin.shorthand === shorthand);
+  const findCoin = (shorthand) => shopCoins.find((coin) => coin.shorthand === shorthand);
 
   return(
     <BrowserRouter>
@@ -42,7 +51,12 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/shop">
-          <Shop coins={coins} />
+          <Shop 
+            coins={shopCoins} 
+            addToCart={addToCart} 
+            findCoin={findCoin}
+            changeQuantity={changeQuantityShop}
+          />
         </Route>
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
@@ -50,7 +64,8 @@ const App = () => {
           <Cart 
             cartItems={cartItems}
             removeFromCart={removeFromCart}
-            changeQuantity={changeQuantity}
+            findCoin={findCoin}
+            changeQuantity={changeQuantityCart}
           />
         </Route>
       </Switch>

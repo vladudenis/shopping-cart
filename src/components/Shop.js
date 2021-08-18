@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ShopItem from "./ShopItem";
 import { FiSearch } from "react-icons/fi";
 
-const Shop = ({ coins }) => {
+const Shop = ({ coins, addToCart, findCoin, changeQuantity }) => {
   const [searchFor, setSearchFor] = useState(false);
   
   const searchForItem = (e) => {
@@ -46,7 +46,10 @@ const Shop = ({ coins }) => {
                     shorthand={coin.shorthand}
                     src={coin.src}
                     price={coin.price}
-                    qty={coin.qty} 
+                    qty={coin.qty}
+                    addToCart={addToCart}
+                    findCoin={findCoin}
+                    changeQuantity={changeQuantity}
                   />
                 )
               })

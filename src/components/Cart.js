@@ -2,7 +2,7 @@ import React from "react";
 import CartItem from "./CartItem";
 import styled from "styled-components";
 
-const Cart = ({ cartItems, removeFromCart, changeQuantity }) => {
+const Cart = ({ cartItems, removeFromCart, findCoin, changeQuantity }) => {
   let total = 0;
   cartItems.forEach((item) => {
     total += item.qty * item.price;
@@ -26,6 +26,7 @@ const Cart = ({ cartItems, removeFromCart, changeQuantity }) => {
                 <CartItem
                   item={item}
                   removeFromCart={removeFromCart} 
+                  findCoin={findCoin}
                   changeQuantity={changeQuantity} 
                 />
               );
@@ -34,7 +35,7 @@ const Cart = ({ cartItems, removeFromCart, changeQuantity }) => {
         </CartItemWrapper>
         <Footer>
           <h1>Total: ${total}</h1>
-          <LargeButton>Buy Coins</LargeButton>
+          <Button>Buy Coins</Button>
         </Footer>
       </Background>
     );
@@ -61,15 +62,19 @@ const CartItemWrapper = styled.div`
 `;
 
 const Button = styled.button`
-  color: white;
-  background-color: black;
-  margin: 10px 5px;
-  border-radius: 10px;
-`;
-
-const LargeButton = styled(Button)`
+  color: black;
+  background-color: white;
+  margin: 3rem 0;
+  background-image: linear-gradient(white, white 50%, #999999 50%, #999999);
+  background-size: 100% 200%;
+  transition: background-position .3s;
   width: 100px;
-  height: 25px;
+  height: 40px;
+  font-size: 14px;
+  border: 1px solid black;
+  &:hover{
+    background-position: 0 -100%
+  }
 `;
 
 const Footer = styled.footer`
